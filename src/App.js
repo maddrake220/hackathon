@@ -5,6 +5,7 @@ import Main from "./pages/Main";
 import NotFound from "./pages/NotFound";
 import Job from "./pages/Job";
 import Welfare from "./pages/Welfare";
+import Favorites from "./pages/Favorites";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/job" element={<Job />} />
           <Route path="/welfare" element={<Welfare />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -1,5 +1,7 @@
+import MainContainer from "../containers/MainContainer";
+
 const Main = () => {
-  return <div>Main</div>;
+  return <MainContainer />;
 };
 
 export default Main;

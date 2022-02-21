@@ -1,5 +1,13 @@
+import KakaoMap from "../components/KakaoMap";
+import useCurrentLocation from "../hooks/Geolocation";
+
 const Job = () => {
-  return <div>Job</div>;
+  const { location, error } = useCurrentLocation();
+  return (
+    <div>
+      <KakaoMap location={location} />
+    </div>
+  );
 };
 
 export default Job;
