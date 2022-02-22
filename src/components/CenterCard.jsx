@@ -1,5 +1,4 @@
 import { useCallback } from "react";
-import _ from "lodash";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import PhoneSvg from "./PhoneSvg";

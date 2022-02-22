@@ -6,7 +6,6 @@ import MainSvg from "./MainSvg";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import { values } from "lodash";
 function groupBy(objectArray, property) {
   return objectArray.reduce((acc, obj) => {
     const key = obj[property]._text;
@@ -19,14 +18,11 @@ function groupBy(objectArray, property) {
 }
 
 const CenterList = ({ data }) => {
-  const slideRef = useRef();
   const [categories, setCategories] = useState([]);
-  const [categoryData, setCategoryData] = useState([]);
   const [seleted, setSeleted] = useState(null);
   const [seletedSlide, setSeletedSlide] = useState(null);
   useEffect(() => {
     const grouped = groupBy(data, "SIGUN_NM");
-    setCategoryData(Object.values(grouped));
     const arr = [];
     for (const [key, value] of Object.entries(grouped)) {
       arr.push(`${key} ${value.length}개`);
