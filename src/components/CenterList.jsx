@@ -127,6 +127,7 @@ const StyledCenterList = styled.div`
     border: 2px solid #248fe5;
     border-radius: 20px;
     &.seleted-slide {
+      color: white;
       background-color: #248fe5;
     }
   }
