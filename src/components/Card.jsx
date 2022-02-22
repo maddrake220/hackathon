@@ -5,7 +5,7 @@ import { setUserFavorite, unSetUserFavorite } from "../redux/reducers/user";
 import _ from "lodash";
 import KakaoMap from "./KakaoMap";
 
-const Card = ({ data, title, text, id, latitude, longitude }) => {
+const Card = ({ data, telno, name, id, latitude, longitude }) => {
   const location = { latitude, longitude };
   const dispatch = useDispatch();
   const {
@@ -30,15 +30,15 @@ const Card = ({ data, title, text, id, latitude, longitude }) => {
   }, [dispatch, id, data, like]);
   return (
     <div style={{ width: "300px", height: "200px", border: "1px solid black" }}>
-      <h3>{title}</h3>
-      <p>{text}</p>
+      <h3>{name}</h3>
+      <p>{telno}</p>
       <button
         onClick={onClick}
         style={{ backgroundColor: like ? "red" : "transparent" }}
       >
         좋아요
       </button>
-      <KakaoMap location={location} text={text} />
+      <KakaoMap location={location} text={name} />
     </div>
   );
 };

@@ -1,10 +1,17 @@
 import styled from "styled-components";
 import Card from "./Card";
 import CardButton from "./CardButton";
+import MainSvg from "./MainSvg";
 import SearchInput from "./SearchInput";
 const Job = ({ loading, error, data }) => {
   return (
     <StyledJob>
+      <div style={{ marginTop: "10px" }}></div>
+      <MainSvg />
+
+      <div className="title">
+        <h2>행복한 시니어를 위한 20가지 조건</h2>
+      </div>
       <div style={{ marginTop: "10px" }}></div>
       <SearchInput />
       <div className="cards">
@@ -13,16 +20,16 @@ const Job = ({ loading, error, data }) => {
         <CardButton backgroundColor={"#FE9428"} />
         <CardButton backgroundColor={"#7144E2"} />
       </div>
-      {data?.GGSOCIALELDJOBSTM?.row?.map((v, index) => {
+      {data?.map((v, index) => {
         return (
           <Card
             data={v}
-            key={v.FAXNO._text}
-            id={v.FAXNO._text}
-            title={v.INST_DIV._text}
-            text={v.INST_NM._text}
-            latitude={v.REFINE_WGS84_LAT._text}
-            longitude={v.REFINE_WGS84_LOGT._text}
+            key={v.OPERT_INST_NM._text + v.ENTRPS_NM._text}
+            id={v.OPERT_INST_NM._text + v.ENTRPS_NM._text}
+            title={v.ENTRPS_NM._text}
+            text={v.OPERT_INST_NM._text}
+            // latitude={v.REFINE_WGS84_LAT._text}
+            // longitude={v.REFINE_WGS84_LOGT._text}
           />
         );
       })}

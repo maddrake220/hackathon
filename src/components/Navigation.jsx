@@ -11,7 +11,7 @@ const Navigation = () => {
           </div>
         )}
       </NavLink>
-      <NavLink to="/favorites">
+      <NavLink to="/center">
         {({ isActive }) => (
           <div className={`navi ${isActive && "active"}`}>
             <span>복지관 찾기</span>

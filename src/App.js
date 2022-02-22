@@ -3,16 +3,19 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Job from "./pages/Job";
-import Welfare from "./pages/Welfare";
+import Center from "./pages/Center";
 import Favorites from "./pages/Favorites";
-
+import Detail from "./components/Detail";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}>
           <Route path="/" element={<Job />} />
-          <Route path="/welfare" element={<Welfare />} />
+          <Route path="/center" element={<Center />} />
+          <Route path="detail">
+            <Route path=":id" element={<Detail />} />
+          </Route>
           <Route path="/favorites" element={<Favorites />} />
         </Route>
         <Route path="*" element={<NotFound />} />

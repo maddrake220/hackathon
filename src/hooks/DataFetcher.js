@@ -1,15 +1,35 @@
 import { useEffect, useState } from "react";
-import { getDatas } from "../utils/apis";
+import { getCenter, getJob } from "../utils/apis";
 
-export const GetFetcher = () => {
+export const GetJobDataFetcher = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
   useEffect(() => {
     setIsLoading(true);
-    getDatas()
+    getJob()
       .then((v) => {
-        setData(v.data);
+        setData(v);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setIsError(e);
+        setIsLoading(false);
+      });
+    return () => setIsLoading(false);
+  }, []);
+  return [data, isLoading, isError];
+};
+
+export const GetCenterDataFetcher = () => {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(null);
+  useEffect(() => {
+    setIsLoading(true);
+    getCenter()
+      .then((v) => {
+        setData(v);
         setIsLoading(false);
       })
       .catch((e) => {

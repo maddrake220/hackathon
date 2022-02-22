@@ -9,7 +9,9 @@ import { reducer } from "../reducer/reducer";
 import Favorites from "./Favorites";
 import Job from "./Job";
 import NotFound from "./NotFound";
-import Welfare from "./Welfare";
+import Welfare from "./Center";
+import Center from "./Center";
+import Detail from "../components/Detail";
 const initialState = {
   fontSize: "16px",
 };
@@ -43,18 +45,16 @@ const Home = () => {
           <button onClick={onClickMinus}>-</button> */}
           <Navigation />
         </header>
-        <div className="title">
-          <h2>행복한 시니어를 위한 20가지 조건</h2>
-        </div>
-        <MainSvg />
 
         <main>
           {pathname === "/" ? (
             <Job />
-          ) : pathname === "/welfare" ? (
-            <Welfare />
+          ) : pathname === "/center" ? (
+            <Center />
           ) : pathname === "/favorites" ? (
             <Favorites />
+          ) : pathname.slice(0, 7) === "/detail" ? (
+            <Detail />
           ) : (
             <NotFound />
           )}
