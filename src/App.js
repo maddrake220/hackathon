@@ -1,7 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Main from "./pages/Main";
 import NotFound from "./pages/NotFound";
 import Job from "./pages/Job";
 import Welfare from "./pages/Welfare";
