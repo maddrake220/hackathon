@@ -1,6 +1,6 @@
 import { Draggable } from "react-beautiful-dnd";
-import React, { useMemo } from "react";
-import styled, { css } from "styled-components";
+import React from "react";
+import styled from "styled-components";
 
 const CardHeader = styled.div`
   font-weight: 500;

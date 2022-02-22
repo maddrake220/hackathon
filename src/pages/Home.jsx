@@ -1,18 +1,13 @@
-import { useCallback, useReducer } from "react";
+import { useReducer } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Android from "../components/Android";
-import KakaoMap from "../components/KakaoMap";
 import MainSvg from "../components/MainSvg";
 import Navigation from "../components/Navigation";
 import { ThemeDispatch } from "../context/context";
-import useCurrentLocation from "../hooks/Geolocation";
-import { changeStyle } from "../reducer/actions";
 import { reducer } from "../reducer/reducer";
-import { getNewFontSize } from "../utils/utils";
 import Favorites from "./Favorites";
 import Job from "./Job";
-import Main from "./Main";
 import NotFound from "./NotFound";
 import Welfare from "./Welfare";
 const initialState = {
@@ -22,22 +17,22 @@ const initialState = {
 const Home = () => {
   const { pathname } = useLocation();
   const [style, dispatch] = useReducer(reducer, initialState);
-  const onClickPlus = useCallback(() => {
-    const newFontSize = getNewFontSize(style.fontSize, "plus", 1);
-    dispatch(
-      changeStyle({
-        fontSize: newFontSize,
-      })
-    );
-  }, [style]);
-  const onClickMinus = useCallback(() => {
-    const newFontSize = getNewFontSize(style.fontSize, "minus", 1);
-    dispatch(
-      changeStyle({
-        fontSize: newFontSize,
-      })
-    );
-  }, [style]);
+  // const onClickPlus = useCallback(() => {
+  //   const newFontSize = getNewFontSize(style.fontSize, "plus", 1);
+  //   dispatch(
+  //     changeStyle({
+  //       fontSize: newFontSize,
+  //     })
+  //   );
+  // }, [style]);
+  // const onClickMinus = useCallback(() => {
+  //   const newFontSize = getNewFontSize(style.fontSize, "minus", 1);
+  //   dispatch(
+  //     changeStyle({
+  //       fontSize: newFontSize,
+  //     })
+  //   );
+  // }, [style]);
   return (
     <ThemeDispatch.Provider value={dispatch}>
       <Layout style={style}>
