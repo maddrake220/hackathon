@@ -2,14 +2,12 @@ import { useReducer } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Android from "../components/Android";
-import MainSvg from "../components/MainSvg";
 import Navigation from "../components/Navigation";
 import { ThemeDispatch } from "../context/context";
 import { reducer } from "../reducer/reducer";
 import Favorites from "./Favorites";
 import Job from "./Job";
 import NotFound from "./NotFound";
-import Welfare from "./Center";
 import Center from "./Center";
 import Detail from "../components/Detail";
 const initialState = {

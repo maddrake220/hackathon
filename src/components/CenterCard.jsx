@@ -1,7 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { setUserFavorite, unSetUserFavorite } from "../redux/reducers/user";
+import { useCallback } from "react";
 import _ from "lodash";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -21,26 +18,6 @@ const Card = ({
   longitude,
 }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const {
-    user: { favorites },
-  } = useSelector((state) => state.user);
-  const [like, setLike] = useState(false);
-  useEffect(() => {
-    const find = _.findIndex(favorites, function (o) {
-      return o.id === id;
-    });
-    if (find === -1) {
-      setLike(false);
-    } else {
-      setLike(true);
-    }
-  }, [favorites, id]);
-  const onClick = useCallback(() => {
-    !like
-      ? dispatch(setUserFavorite({ id, data }))
-      : dispatch(unSetUserFavorite({ id, data }));
-  }, [dispatch, id, data, like]);
 
   const onClickDetail = useCallback(() => {
     navigate(`/detail/${id}`, { replace: true, state: data });
@@ -65,13 +42,6 @@ const Card = ({
             <span>{address}</span>
           </div>
         </div>
-        {/* <button
-        onClick={onClick}
-        style={{ backgroundColor: like ? "red" : "transparent" }}
-      >
-        좋아요
-      </button> */}
-        {/* <KakaoMap location={location} text={name} /> */}
       </div>
       <div className="button-detail" onClick={onClickDetail}>
         <span>상세보기</span>
