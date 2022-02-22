@@ -26,6 +26,7 @@ export default Navigation;
 
 const StyledNavigation = styled.div`
   width: 360px;
+  height: 49px;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -36,7 +37,7 @@ const StyledNavigation = styled.div`
   font-weight: bold;
   .navi {
     width: 180px;
-    height: 62px;
+    height: 47px;
     display: flex;
     justify-content: center;
     align-items: center;

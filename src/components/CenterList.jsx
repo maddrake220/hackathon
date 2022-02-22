@@ -47,9 +47,8 @@ const CenterList = ({ data }) => {
   }, []);
   return (
     <StyledCenterList>
-      <div style={{ marginTop: "10px" }}></div>
       <MainSvg />
-      <div className="title">
+      <div className="text-title">
         <h2>행복한 시니어를 위한 20가지 조건</h2>
       </div>
       <div style={{ marginTop: "10px" }}></div>
@@ -63,7 +62,7 @@ const CenterList = ({ data }) => {
             style={{
               marginLeft: "5px",
               width: "120px",
-              height: "43px",
+              height: "35px",
               fontSize: "14px",
               fontWeight: "bold",
             }}
@@ -116,6 +115,7 @@ const CenterList = ({ data }) => {
 export default CenterList;
 
 const StyledCenterList = styled.div`
+  position: relative;
   .category {
     display: flex;
     align-items: center;
@@ -127,7 +127,17 @@ const StyledCenterList = styled.div`
       background-color: #248fe5;
     }
   }
-
+  .text-title {
+    position: absolute;
+    top: 35px;
+    left: 36px;
+    width: 136px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+  }
   .center-list {
     display: flex;
     justify-content: center;

@@ -37,7 +37,9 @@ const Home = () => {
     <ThemeDispatch.Provider value={dispatch}>
       <Layout style={style}>
         <Android />
-        <div className="inner"></div>
+        <div className="inner">
+          <span>어르신행복일자리</span>
+        </div>
         <header>
           {/* <button onClick={onClickPlus}>+</button>
           <button onClick={onClickMinus}>-</button> */}
@@ -71,6 +73,14 @@ const Layout = styled.section`
     width: 360px;
     height: 52px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span {
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 36px;
+    }
   }
   .title {
     position: absolute;
