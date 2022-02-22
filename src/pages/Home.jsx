@@ -15,6 +15,7 @@ import CenterSvg from "../components/CenterSvg";
 import NotFound from "./NotFound";
 import JobResult from "./JobResult";
 import MainSvg from "../components/MainSvg";
+import Resume from "./Resume";
 const initialState = {
   fontSize: "16px",
 };
@@ -62,6 +63,8 @@ const Home = () => {
             <Job />
           ) : pathname === "/list" ? (
             <JobList />
+          ) : pathname === "/resume" ? (
+            <Resume />
           ) : pathname === "/center" ? (
             <Center />
           ) : pathname === "/favorites" ? (

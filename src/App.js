@@ -8,6 +8,8 @@ import Favorites from "./pages/Favorites";
 import Detail from "./components/Detail";
 import CenterList from "./pages/CenterList";
 import JobList from "./pages/JobList";
+import Resume from "./pages/Resume";
+import ApplyInquiry from "./pages/ApplyInquiry";
 function App() {
   return (
     <BrowserRouter>
@@ -15,6 +17,8 @@ function App() {
         <Route path="/" element={<Home />}>
           <Route path="/" element={<Job />} />
           <Route path="/list" element={<JobList />} />
+          <Route path="/resume" element={<Resume />} />
+          <Route path="/applyinquiry" element={<ApplyInquiry />} />
           <Route path="/center" element={<Center />}>
             <Route path="/center/list" element={<CenterList />} />
             <Route path="/center/favorites" element={<Favorites />} />

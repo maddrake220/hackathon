@@ -1,10 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setUserFavorite, unSetUserFavorite } from "../redux/reducers/user";
+import {
+  setUserJobFavorite,
+  unSetUserJobFavorite,
+} from "../redux/reducers/user";
 import _ from "lodash";
 import styled from "styled-components";
 import CustomButton from "./CustomButton4";
+import { useNavigate } from "react-router-dom";
 const Card = ({
   data,
   id,
@@ -17,6 +21,7 @@ const Card = ({
   enddate,
 }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     user: { favorites },
   } = useSelector((state) => state.user);
@@ -34,9 +39,12 @@ const Card = ({
   }, [favorites, id]);
   const onClick = useCallback(() => {
     !like
-      ? dispatch(setUserFavorite({ id, data }))
-      : dispatch(unSetUserFavorite({ id, data }));
+      ? dispatch(setUserJobFavorite({ id, data }))
+      : dispatch(unSetUserJobFavorite({ id, data }));
   }, [dispatch, id, data, like]);
+  const onClickForm = useCallback(() => {
+    navigate("/resume");
+  }, [navigate]);
   return (
     <StyledCard>
       <div className="inner-card">
@@ -78,34 +86,18 @@ const Card = ({
               fill="#356EE7"
             />
           </svg>
-          <span>{recurt}명</span>모집중이에요
-        </div>
-        <div className="enddate">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0.625 18.625C0.625 19.0398 0.960156 19.375 1.375 19.375H18.625C19.0398 19.375 19.375 19.0398 19.375 18.625V8.78125H0.625V18.625ZM18.625 2.3125H14.6875V0.8125C14.6875 0.709375 14.6031 0.625 14.5 0.625H13.1875C13.0844 0.625 13 0.709375 13 0.8125V2.3125H7V0.8125C7 0.709375 6.91563 0.625 6.8125 0.625H5.5C5.39687 0.625 5.3125 0.709375 5.3125 0.8125V2.3125H1.375C0.960156 2.3125 0.625 2.64766 0.625 3.0625V7.1875H19.375V3.0625C19.375 2.64766 19.0398 2.3125 18.625 2.3125Z"
-              fill="#FF5555"
-            />
-          </svg>
           <div>
-            {" "}
             {startdate.slice(8, 10) % 2 === 1 ? (
               <span>
-                <span>24일</span> 신청이 마감돼요
+                <span>{recurt}명</span> 모집중입니다.
               </span>
             ) : (
-              "신청이 마감했어요"
+              "모집이 끝났습니다."
             )}
           </div>
         </div>
       </div>
-      <div style={{ marginTop: "43px", position: "relative" }}>
+      <div style={{ position: "absolute", bottom: "0px" }}>
         <svg
           className="star"
           width="20"
@@ -119,8 +111,9 @@ const Card = ({
             fill="#356EE7"
           />
         </svg>
-        <CustomButton primary text={"관심 일자리 등록하기"} />
+        <CustomButton primary text={"관심 일자리 등록하기"} onClick={onClick} />
         <CustomButton
+          onClick={onClickForm}
           text={
             startdate.slice(8, 10) % 2 === 1 ? "신청하기" : "마감된 일자리에요"
           }
@@ -129,8 +122,6 @@ const Card = ({
           }}
         />
       </div>
-
-      <div>신청하기</div>
     </StyledCard>
   );
 };
@@ -149,6 +140,7 @@ const StyledCard = styled.div`
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   color: #666666;
+  position: relative;
   .star {
     position: absolute;
     left: 47px;
@@ -213,10 +205,14 @@ const StyledCard = styled.div`
     margin-top: 8px;
     display: flex;
     align-items: center;
-    > span {
-      margin-left: 4px;
-      font-weight: bold;
-      color: #356ee7;
+    > div {
+      > span {
+        > span {
+          margin-left: 4px;
+          font-weight: bold;
+          color: #356ee7;
+        }
+      }
     }
   }
   .enddate {

@@ -1,23 +1,22 @@
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
 import { useInputChange } from "../hooks/userInputChange";
-import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
 
-// styled-components
 const Wrapper = styled.section`
-  padding: 20px;
   background-color: #fff;
-  h1 {
-    padding: 2px 0 10px;
+  padding: 26px 20px 20px;
+  h4 {
+    /* border: 1px solid blue; */
     margin: 0 auto;
-    font-size: 24px;
+    padding-bottom: 10px;
+    font-size: 30px;
     font-weight: bold;
   }
-  span {
-    display: block;
-    color: #666666;
-    margin-bottom: 20px;
+  p {
+    font-size: 18px;
+    color: #666;
+    line-height: 27px;
+    margin-bottom: 16px;
   }
   form {
     font-size: 18px;
@@ -68,7 +67,6 @@ const Label = styled.label`
   display: block;
   padding: 10px 0;
 `;
-
 const Info = styled.span`
   display: block;
   box-sizing: border-box;
@@ -89,7 +87,25 @@ const Tel = styled.div`
     margin-left: 5px;
   }
 `;
-
+const Banner = styled.div`
+  width: 360px;
+  height: 160px;
+  background-color: #248fe5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  span {
+    color: #fff;
+    font-size: 24px;
+  }
+  span:last-child {
+    margin-top: 10px;
+    font-size: 36px;
+    color: #fff;
+    font-weight: 700;
+  }
+`;
 const ButtonBox = styled.div`
   border-top: 1px solid #f3f3f3;
   padding: 0;
@@ -111,39 +127,28 @@ const ButtonBox = styled.div`
   }
 `;
 
-export const ResumeForm = () => {
-  const [isShowing, setIsShowing] = useState(false);
+export const LoginForm = () => {
   const [input, handleInputChange] = useInputChange();
-
   let Navigate = useNavigate();
-
-  const goBack = () => {
-    Navigate(-1);
-  };
-
-  const openModal = () => {
-    setIsShowing(true);
-  };
-  useEffect(() => {
-    if (isShowing) {
-      const notiTimer = setTimeout(() => {
-        setIsShowing(false);
-      }, 6000);
-      return () => clearTimeout(notiTimer);
-    }
-  }, [isShowing]);
-
   function onSubmit(e) {
     e.preventDefault();
-    console.log(input);
-    localStorage.setItem("userInfo", JSON.stringify(input));
+    const UserInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (UserInfo.name === "박순자") {
+      Navigate("/applylist");
+    }
   }
 
   return (
     <>
+      <Banner>
+        <span>어르신행복일자리</span>
+        <span>신청하기</span>
+      </Banner>
       <Wrapper>
-        <h1>일자리 신청하기</h1>
-        <span>아래 개인정보를 모두 입력해주세요.</span>
+        <h4>나의 개인정보 쓰기</h4>
+        <p>
+          나의 행복일자리 신청내역을 보려면 아래 개인정보를 모두 입력해주세요
+        </p>
         <form onSubmit={onSubmit}>
           <Label htmlFor="name">이름</Label>
           <div>
@@ -283,12 +288,10 @@ export const ResumeForm = () => {
             />
           </Tel>
         </form>
-
-        <div>{isShowing && <Modal message="일자리 신청을 완료했어요" />}</div>
       </Wrapper>
       <ButtonBox>
-        <button onClick={goBack}>취소하기</button>
-        <input type="submit" value="신청하기" onClick={openModal} />
+        <button>취소하기</button>
+        <input type="submit" value="신청내역 보기" />
       </ButtonBox>
     </>
   );
