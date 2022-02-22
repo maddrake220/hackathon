@@ -1,7 +1,9 @@
 import { useCallback, useReducer } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+import Android from "../components/Android";
 import KakaoMap from "../components/KakaoMap";
+import MainSvg from "../components/MainSvg";
 import Navigation from "../components/Navigation";
 import { ThemeDispatch } from "../context/context";
 import useCurrentLocation from "../hooks/Geolocation";
@@ -39,15 +41,20 @@ const Home = () => {
   return (
     <ThemeDispatch.Provider value={dispatch}>
       <Layout style={style}>
+        <Android />
+        <div className="inner"></div>
         <header>
-          <button onClick={onClickPlus}>+</button>
-          <button onClick={onClickMinus}>-</button>
+          {/* <button onClick={onClickPlus}>+</button>
+          <button onClick={onClickMinus}>-</button> */}
           <Navigation />
         </header>
+        <div className="title">
+          <h2>행복한 시니어를 위한 20가지 조건</h2>
+        </div>
+        <MainSvg />
+
         <main>
           {pathname === "/" ? (
-            <Main />
-          ) : pathname === "/job" ? (
             <Job />
           ) : pathname === "/welfare" ? (
             <Welfare />
@@ -64,8 +71,25 @@ const Home = () => {
 };
 
 const Layout = styled.section`
-  width: 100vw;
-
+  max-width: 360px;
+  font-style: normal;
+  background-color: #fff;
+  .inner {
+    width: 360px;
+    height: 52px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .title {
+    position: absolute;
+    width: 137px;
+    top: 180px;
+    left: 36px;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 16px;
+  }
   @media screen and (max-width: 599px) {
     /* 모바일 세로 */
   }

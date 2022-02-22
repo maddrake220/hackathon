@@ -32,6 +32,7 @@ const useCurrentLocation = (options = {}) => {
     geolocation.getCurrentPosition(handleSuccess, handleError);
   }, []);
 
+  localStorage.setItem("location", location);
   return { location, error };
 };
 

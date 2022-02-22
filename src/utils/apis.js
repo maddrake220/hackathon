@@ -6,7 +6,7 @@ const URL2 = `https://openapi.gg.go.kr/GGSOCIALELDJOBSTM?KEY=${KEY}&pIndex=1&pSi
 
 export const getDatas = async () => {
   try {
-    const data = await axios.get(URL);
+    const data = await axios.get(URL2);
     return data;
   } catch (error) {
     console.log(error, "Error while getting datas");

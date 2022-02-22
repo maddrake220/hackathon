@@ -1,5 +1,7 @@
+import DragList from "../components/Draggable/DragList";
+
 const Welfare = () => {
-  return <div>Welfare</div>;
+  return <DragList />;
 };
 
 export default Welfare;

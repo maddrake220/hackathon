@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setUserFavorite, unSetUserFavorite } from "../redux/reducers/user";
 import _ from "lodash";
+import KakaoMap from "./KakaoMap";
 
-const Card = ({ data, title, text, id }) => {
+const Card = ({ data, title, text, id, latitude, longitude }) => {
+  const location = { latitude, longitude };
   const dispatch = useDispatch();
   const {
     user: { favorites },
@@ -12,6 +14,7 @@ const Card = ({ data, title, text, id }) => {
   const [like, setLike] = useState(false);
   useEffect(() => {
     const find = _.findIndex(favorites, function (o) {
+      console.log("id?", o);
       return o.id === id;
     });
     if (find === -1) {
@@ -35,6 +38,7 @@ const Card = ({ data, title, text, id }) => {
       >
         좋아요
       </button>
+      <KakaoMap location={location} text={text} />
     </div>
   );
 };

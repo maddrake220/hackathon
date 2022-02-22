@@ -11,14 +11,16 @@ const Favorites = ({ user }) => {
         flexWrap: "wrap",
       }}
     >
-      {user?.favorites.map((item) => {
-        console.log(item.data);
+      {user?.favorites.map((v) => {
         return (
           <Card
-            text={item.data.BIZ_TYPE_NM._text}
-            id={item.id}
-            key={item.id}
-            title={item.data.INST_NM._text}
+            id={v.id}
+            key={v.id}
+            data={v}
+            title={v.data.INST_DIV._text}
+            text={v.data.INST_NM._text}
+            latitude={v.data.REFINE_WGS84_LAT._text}
+            longitude={v.data.REFINE_WGS84_LOGT._text}
           />
         );
       })}

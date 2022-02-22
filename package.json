@@ -10,6 +10,7 @@
     "buffer": "^6.0.3",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.2",
     "react-kakao-maps-sdk": "^1.0.4",
     "react-redux": "^7.2.6",
@@ -19,6 +20,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
     "styled-components": "^5.3.3",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4",
     "xml-js": "^1.6.11"
   },
