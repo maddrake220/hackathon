@@ -1,8 +1,14 @@
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import CardButton from "./CardButton";
 import MainSvg from "./MainSvg";
 import SearchInput from "./SearchInput";
 const Job = ({ loading, error, data }) => {
+  const navigate = useNavigate();
+  const onClick = useCallback(() => {
+    navigate("/favorites");
+  }, [navigate]);
   return (
     <StyledJob>
       <div className="job-wrap">
@@ -21,6 +27,7 @@ const Job = ({ loading, error, data }) => {
             text={"나의 행복일자리 신청내역"}
           />
           <CardButton
+            onClick={onClick}
             backgroundColor={"#FE9428"}
             text={"내가 관심있어 한 일자리"}
           />

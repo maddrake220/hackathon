@@ -1,69 +1,90 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import PhoneSvg from "./PhoneSvg";
-import AddressSvg from "./AddressSvg";
-import HomeSvg from "./HomeSvg";
+import CustomButton3 from "./CustomButton3";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserFavorite, unSetUserFavorite } from "../redux/reducers/user";
+import _ from "lodash";
 
-const Card = ({
-  data,
-  faxno,
-  grp,
-  address,
-  telno,
-  name,
-  id,
-  latitude,
-  longitude,
-}) => {
+const Card = ({ style, data, name, id, city, person }) => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const {
+    user: { favorites },
+  } = useSelector((state) => state.user);
+  const [like, setLike] = useState(false);
+  useEffect(() => {
+    const find = _.findIndex(favorites, function (o) {
+      console.log("id?", o);
+      return o.id === id;
+    });
+    if (find === -1) {
+      setLike(false);
+    } else {
+      setLike(true);
+    }
+  }, [favorites, id]);
   const onClickDetail = useCallback(() => {
     navigate(`/detail/${id}`, { replace: true, state: data });
   }, [navigate, id, data]);
+  const onClickFavorite = useCallback(() => {
+    !like
+      ? dispatch(setUserFavorite({ id, data }))
+      : dispatch(unSetUserFavorite({ id, data }));
+  }, [dispatch, id, data, like]);
   return (
     <StyledCard>
-      <div className="card-inner">
-        <h3>{name}</h3>
-
-        <div className="infor">
-          <div className="telno">
-            <PhoneSvg />
-            <span>{telno}</span>
-          </div>
-
-          <div className="grp">
-            <HomeSvg />
-            <span>{grp}</span>
-          </div>
-          <div className="address">
-            <AddressSvg />
-            <span>{address}</span>
-          </div>
+      <div className="card-inner" onClick={onClickDetail}>
+        <div className="center-title">{name}</div>
+        <div className="center-info">
+          <span>
+            시군명:{city} / 회원수: {person}명
+          </span>
         </div>
       </div>
-      <div className="button-detail" onClick={onClickDetail}>
-        <span>상세보기</span>
-      </div>
+      <CustomButton3
+        primary
+        text={"MY복지관 저장하기"}
+        onClick={onClickFavorite}
+        style={style}
+        like={like}
+      />
+      <a
+        href="http://gangnam.go.kr/office/nonhyunsenior/contents/nonhyunsenior_guide/1/view.do?mid=nonhyunsenior_guide"
+        target={"_blank"}
+        rel="noreferrer"
+      >
+        <CustomButton3 text={"회원 등록하기"} style={style} />
+      </a>
     </StyledCard>
   );
 };
 
 const StyledCard = styled.div`
   width: 320px;
-  height: 292px;
+  height: 360px;
   background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  font-family: "Roboto";
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+  border-radius: 12px 12px 0px 0px;
   font-style: normal;
   letter-spacing: -0.01em;
-  position: relative;
-  display: flex;
-  flex-direction: column;
   .card-inner {
-    margin-left: 20px;
-    margin-right: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 264px;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  .center-title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 35px;
+  }
+  .center-info {
   }
   h3 {
     display: block;
@@ -72,50 +93,6 @@ const StyledCard = styled.div`
     color: #ee4353;
     font-size: 32px;
     line-height: 37px;
-  }
-  .receipts {
-    margin-top: 3px;
-    > div {
-      width: 36.93px;
-      height: 18.12px;
-      left: 41.99px;
-      top: 922.86px;
-      background: #ee4353;
-      border-radius: 5px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-  .infor {
-    margin-top: 33px;
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 18px;
-    * {
-      display: flex;
-      align-items: center;
-      margin-top: 4px;
-      > span {
-        margin-left: 12px;
-      }
-    }
-  }
-  .button-detail {
-    position: absolute;
-    bottom: 0;
-    background: #ee4353;
-    width: 100%;
-    height: 46px;
-    border-radius: 0 0 20px 20px;
-    display: flex;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
   }
 `;
 export default Card;

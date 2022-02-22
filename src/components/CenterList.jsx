@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
 import CenterCard from "./CenterCard";
-import MainSvg from "./MainSvg";
-
 import "swiper/css";
 import "swiper/css/pagination";
+import SearchInput from "./SearchInput2";
 function groupBy(objectArray, property) {
   return objectArray.reduce((acc, obj) => {
     const key = obj[property]._text;
@@ -19,8 +17,11 @@ function groupBy(objectArray, property) {
 
 const CenterList = ({ data }) => {
   const [categories, setCategories] = useState([]);
-  const [seleted, setSeleted] = useState(null);
-  const [seletedSlide, setSeletedSlide] = useState(null);
+  const [search, setSearch] = useState("");
+  const [searched, setSearched] = useState("");
+  const onClick = useCallback(() => {
+    setSearched(search);
+  }, [search]);
   useEffect(() => {
     const grouped = groupBy(data, "SIGUN_NM");
     const arr = [];
@@ -30,52 +31,17 @@ const CenterList = ({ data }) => {
     setCategories(arr);
   }, [data]);
 
-  useEffect(() => {
-    if (seletedSlide !== null) {
-      const std = document.getElementById(seletedSlide);
-
-      var cellArray = Array.from(document.querySelectorAll(".category"));
-      cellArray.forEach(function (node, idx) {
-        node.classList.remove("seleted-slide");
-      });
-      std.classList.add("seleted-slide");
-    }
-  }, [seletedSlide]);
-  const onClick = useCallback((e) => {
-    setSeletedSlide(e.target.id);
-    setSeleted(e.target.innerText.split(" ")[0]);
-  }, []);
   return (
     <StyledCenterList>
-      <MainSvg />
-      <div className="text-title">
-        <h2>행복한 시니어를 위한 20가지 조건</h2>
+      <div className="search-input">
+        <SearchInput search={search} setSearch={setSearch} onClick={onClick} />
       </div>
-      <div style={{ marginTop: "10px" }}></div>
-
-      <Swiper style={{ width: "340px", cursor: "pointer" }} slidesPerView={4}>
-        {categories.map((v, index) => (
-          <SwiperSlide
-            id={index}
-            className={`category`}
-            onClick={onClick}
-            style={{
-              marginLeft: "5px",
-              width: "120px",
-              height: "35px",
-              fontSize: "14px",
-              fontWeight: "bold",
-            }}
-          >
-            <div id={index}>{v}</div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
       <ul className="center-list">
-        {seleted !== null
+        {searched !== ""
           ? data
-              .filter((v) => v.SIGUN_NM._text === seleted)
+              .filter((v) => v.SIGUN_NM._text === searched)
               .map((v) => {
+                console.log(v);
                 return (
                   <CenterCard
                     data={v}
@@ -88,6 +54,8 @@ const CenterList = ({ data }) => {
                     telno={v.DETAIL_TELNO._text}
                     latitude={v.REFINE_WGS84_LAT._text}
                     longitude={v.REFINE_WGS84_LOGT._text}
+                    city={v.SIGUN_NM._text}
+                    person={v.ENFLPSN_PSTPSN_SUM._text}
                   />
                 );
               })
@@ -104,6 +72,8 @@ const CenterList = ({ data }) => {
                   telno={v.DETAIL_TELNO._text}
                   latitude={v.REFINE_WGS84_LAT._text}
                   longitude={v.REFINE_WGS84_LOGT._text}
+                  city={v.SIGUN_NM._text}
+                  person={v.ENFLPSN_PSTPSN_SUM._text}
                 />
               );
             })}
@@ -116,6 +86,11 @@ export default CenterList;
 
 const StyledCenterList = styled.div`
   position: relative;
+  .search-input {
+    position: absolute;
+    top: -170px;
+    left: 12px;
+  }
   .category {
     display: flex;
     align-items: center;
@@ -127,17 +102,7 @@ const StyledCenterList = styled.div`
       background-color: #248fe5;
     }
   }
-  .text-title {
-    position: absolute;
-    top: 35px;
-    left: 36px;
-    width: 136px;
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 16px;
-  }
+
   .center-list {
     display: flex;
     justify-content: center;

@@ -5,6 +5,7 @@ import HomeSvg from "./HomeSvg";
 import PersonSvg from "./PersonSvg";
 import KakaoMap from "./KakaoMap";
 import AddressSvg from "./AddressSvg";
+import CustomButton2 from "./CustomButton2";
 
 const Detail = () => {
   const { state } = useLocation();
@@ -39,13 +40,10 @@ const Detail = () => {
           </div>
         </div>
         <div className="buttons">
-          <div className="button1">
-            <span>상세보기</span>
-          </div>
-          <div className="button2">
-            <span>전화하기</span>
-          </div>
+          <CustomButton2 primary text={"연락하기"} />
+          <CustomButton2 text={"상세보기"} />
         </div>
+
         <div style={{ marginTop: "29px" }}></div>
         <KakaoMap
           location={location}
@@ -133,25 +131,6 @@ const StyledDetailCenter = styled.div`
       margin-top: 53px;
       display: flex;
       cursor: pointer;
-      .button1 {
-        width: 161px;
-        height: 64px;
-        background-color: white;
-        border: 1px solid black;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .button2 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        width: 161px;
-        height: 64px;
-        background-color: #248fe5;
-        border: 1px solid #248fe5;
-      }
     }
     .address-info {
       transform: translateX(-23px);

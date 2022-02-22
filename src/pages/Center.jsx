@@ -1,7 +1,7 @@
-import CenterContainer from "../containers/CenterContainer";
+import CT from "../components/Center";
 
 const Center = () => {
-  return <CenterContainer />;
+  return <CT />;
 };
 
 export default Center;

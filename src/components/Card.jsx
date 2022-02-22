@@ -3,10 +3,9 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setUserFavorite, unSetUserFavorite } from "../redux/reducers/user";
 import _ from "lodash";
-import KakaoMap from "./KakaoMap";
+import styled from "styled-components";
 
-const Card = ({ data, telno, name, id, latitude, longitude }) => {
-  const location = { latitude, longitude };
+const Card = ({ data, telno, name, id }) => {
   const dispatch = useDispatch();
   const {
     user: { favorites },
@@ -29,7 +28,9 @@ const Card = ({ data, telno, name, id, latitude, longitude }) => {
       : dispatch(unSetUserFavorite({ id, data }));
   }, [dispatch, id, data, like]);
   return (
-    <div style={{ width: "300px", height: "200px", border: "1px solid black" }}>
+    <StyledCard
+      style={{ width: "300px", height: "200px", border: "1px solid black" }}
+    >
       <h3>{name}</h3>
       <p>{telno}</p>
       <button
@@ -38,9 +39,10 @@ const Card = ({ data, telno, name, id, latitude, longitude }) => {
       >
         좋아요
       </button>
-      <KakaoMap location={location} text={name} />
-    </div>
+    </StyledCard>
   );
 };
 
 export default Card;
+
+const StyledCard = styled.div``;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const CardButton = ({ backgroundColor, text = "내 주변 일자리" }) => {
+const CardButton = ({ onClick, backgroundColor, text = "내 주변 일자리" }) => {
   return (
-    <StyledCardButton backgroundColor={backgroundColor}>
+    <StyledCardButton backgroundColor={backgroundColor} onClick={onClick}>
       <div className="text">{text}</div>
       <div className="go-now">
         <span>바로가기</span>

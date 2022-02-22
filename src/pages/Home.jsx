@@ -7,9 +7,12 @@ import { ThemeDispatch } from "../context/context";
 import { reducer } from "../reducer/reducer";
 import Favorites from "./Favorites";
 import Job from "./Job";
-import NotFound from "./NotFound";
 import Center from "./Center";
 import Detail from "../components/Detail";
+import CenterList from "./CenterList";
+import CenterSvg from "../components/CenterSvg";
+import MainSvg from "../components/MainSvg";
+import NotFound from "./NotFound";
 const initialState = {
   fontSize: "16px",
 };
@@ -45,7 +48,13 @@ const Home = () => {
           <button onClick={onClickMinus}>-</button> */}
           <Navigation />
         </header>
-
+        {pathname === "/center" || pathname === "/center/list" ? (
+          <CenterSvg />
+        ) : pathname === "/" || pathname === "/list" ? (
+          <MainSvg />
+        ) : (
+          <div />
+        )}
         <main>
           {pathname === "/" ? (
             <Job />
@@ -55,6 +64,10 @@ const Home = () => {
             <Favorites />
           ) : pathname.slice(0, 7) === "/detail" ? (
             <Detail />
+          ) : pathname === "/center/list" ? (
+            <CenterList />
+          ) : pathname === "/center/favorites" ? (
+            <Favorites />
           ) : (
             <NotFound />
           )}
