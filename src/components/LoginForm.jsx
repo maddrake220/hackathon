@@ -145,7 +145,7 @@ export const LoginForm = () => {
         <span>신청하기</span>
       </Banner>
       <Wrapper>
-        <h4>나의 개인정보 쓰기</h4>
+        <h4>나의 개인정보 쓰기</h4>
         <p>
           나의 행복일자리 신청내역을 보려면 아래 개인정보를 모두 입력해주세요
         </p>

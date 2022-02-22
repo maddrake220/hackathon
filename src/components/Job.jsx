@@ -10,6 +10,9 @@ const Job = ({ loading, error, data }) => {
   const onClick = useCallback(() => {
     navigate("/list");
   }, [navigate]);
+  const onClickHappy = useCallback(() => {
+    navigate("/applyinquiry");
+  }, [navigate]);
   return (
     <StyledJob>
       <div className="job-wrap">
@@ -18,6 +21,7 @@ const Job = ({ loading, error, data }) => {
         </div>
         <div className="cards">
           <CardButton
+            onClick={onClickHappy}
             backgroundColor={"#248FE5"}
             text={"나의 행복일자리 신청내역"}
           />
