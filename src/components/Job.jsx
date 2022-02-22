@@ -13,6 +13,9 @@ const Job = ({ loading, error, data }) => {
   const onClickHappy = useCallback(() => {
     navigate("/applyinquiry");
   }, [navigate]);
+  const onClickFavorites = useCallback(() => {
+    navigate("/list/favorites");
+  }, [navigate]);
   return (
     <StyledJob>
       <div className="job-wrap">
@@ -26,6 +29,7 @@ const Job = ({ loading, error, data }) => {
             text={"나의 행복일자리 신청내역"}
           />
           <CardButton
+            onClick={onClickFavorites}
             backgroundColor={"#FE9428"}
             text={"내가 관심있어 한 일자리"}
           />

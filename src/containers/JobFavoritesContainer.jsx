@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
-import CenterFavorites from "../components/CenterFavorites";
+import JobFavorites from "../components/JobFavorites";
 
 const FavoritesContainer = () => {
   const { user } = useSelector((state) => state.user);
-  return <CenterFavorites user={user} />;
+  console.log(user);
+  return <JobFavorites user={user} />;
 };
 
 export default FavoritesContainer;

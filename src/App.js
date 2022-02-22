@@ -10,13 +10,16 @@ import CenterList from "./pages/CenterList";
 import JobList from "./pages/JobList";
 import Resume from "./pages/Resume";
 import ApplyInquiry from "./pages/ApplyInquiry";
+import JobFavorites from "./pages/JobFavorites";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}>
           <Route path="/" element={<Job />} />
-          <Route path="/list" element={<JobList />} />
+          <Route path="/list" element={<JobList />}>
+            <Route path="/list/favorites" element={<JobFavorites />} />
+          </Route>
           <Route path="/resume" element={<Resume />} />
           <Route path="/applyinquiry" element={<ApplyInquiry />} />
           <Route path="/center" element={<Center />}>

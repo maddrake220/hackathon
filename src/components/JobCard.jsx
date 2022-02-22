@@ -23,12 +23,12 @@ const Card = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
-    user: { favorites },
+    user: { jobfavorites },
   } = useSelector((state) => state.user);
   const [like, setLike] = useState(false);
   useEffect(() => {
-    const find = _.findIndex(favorites, function (o) {
-      console.log("id?", o);
+    const find = _.findIndex(jobfavorites, function (o) {
+      console.log(o.id);
       return o.id === id;
     });
     if (find === -1) {
@@ -36,7 +36,7 @@ const Card = ({
     } else {
       setLike(true);
     }
-  }, [favorites, id]);
+  }, [jobfavorites, id]);
   const onClick = useCallback(() => {
     !like
       ? dispatch(setUserJobFavorite({ id, data }))
@@ -111,7 +111,11 @@ const Card = ({
             fill="#356EE7"
           />
         </svg>
-        <CustomButton primary text={"관심 일자리 등록하기"} onClick={onClick} />
+        <CustomButton
+          primary
+          text={!like ? "관심 일자리 등록하기" : "관심 일자리 취소하기"}
+          onClick={onClick}
+        />
         <CustomButton
           onClick={onClickForm}
           text={

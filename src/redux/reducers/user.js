@@ -78,6 +78,7 @@ const reducer = (state = initialState, action) => {
         user: {
           id: 1234,
           username: "maddrake",
+          favorites: state.user.favorites,
           jobfavorites: newFavorites,
         },
       };
@@ -92,6 +93,7 @@ const reducer = (state = initialState, action) => {
           id: 1234,
           username: "maddrake",
           favorites: newFavirites,
+          jobfavorites: state.user.favorites,
         },
       };
     }

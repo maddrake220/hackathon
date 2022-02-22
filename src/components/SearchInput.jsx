@@ -1,14 +1,30 @@
+import { useCallback } from "react";
 import styled from "styled-components";
 
-const SearchInput = ({ autoFocus = false }) => {
+const SearchInput = ({
+  search,
+  setSearch,
+  onKeyPress,
+  onClick,
+  autoFocus = false,
+}) => {
+  const onChange = useCallback(
+    (e) => {
+      setSearch(e.target.value);
+    },
+    [setSearch]
+  );
   return (
     <StyledSearchInput>
       <input
+        onKeyPress={onKeyPress}
         autoFocus={autoFocus}
         placeholder="지역구(시군구)를 입력하세요."
+        value={search}
+        onChange={onChange}
         type="text"
       />
-      <div className="search-icon">
+      <div className="search-icon" onClick={onClick}>
         <svg
           width="32"
           height="32"

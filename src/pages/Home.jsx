@@ -6,6 +6,7 @@ import Navigation from "../components/Navigation";
 import { ThemeDispatch } from "../context/context";
 import { reducer } from "../reducer/reducer";
 import Favorites from "./Favorites";
+import JobFavorites from "./JobFavorites";
 import Job from "./Job";
 import JobList from "../components/JobList";
 import Center from "./Center";
@@ -78,6 +79,8 @@ const Home = () => {
             <CenterList />
           ) : pathname === "/center/favorites" ? (
             <Favorites />
+          ) : pathname === "/list/favorites" ? (
+            <JobFavorites />
           ) : pathname === "/jobResult" ? (
             <JobResult />
           ) : (
