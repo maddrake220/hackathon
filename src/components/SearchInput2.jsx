@@ -1,7 +1,13 @@
 import { useCallback } from "react";
 import styled from "styled-components";
 
-const SearchInput = ({ search, setSearch, onClick }) => {
+const SearchInput = ({
+  search,
+  setSearch,
+  onClick,
+  autoFocus = false,
+  onKeyPress,
+}) => {
   const onChange = useCallback(
     (e) => {
       setSearch(e.target.value);
@@ -11,6 +17,8 @@ const SearchInput = ({ search, setSearch, onClick }) => {
   return (
     <StyledSearchInput>
       <input
+        onKeyPress={onKeyPress}
+        autoFocus={autoFocus}
         placeholder="사는 지역의 시,군을 입력하세요."
         type="text"
         value={search}

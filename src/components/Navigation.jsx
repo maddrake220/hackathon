@@ -1,12 +1,17 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const Navigation = () => {
+  const { pathname } = useLocation();
   return (
     <StyledNavigation>
       <NavLink to="/">
         {({ isActive }) => (
-          <div className={`navi ${isActive && "active"}`}>
+          <div
+            className={`navi ${isActive && "active"} ${
+              pathname === "/list" && "active"
+            }`}
+          >
             <span>일자리 찾기</span>
           </div>
         )}

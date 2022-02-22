@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
-const SearchInput = () => {
+const SearchInput = ({ autoFocus = false }) => {
   return (
     <StyledSearchInput>
-      <input placeholder="지역구(시군구)를 입력하세요." type="text" />
+      <input
+        autoFocus={autoFocus}
+        placeholder="지역구(시군구)를 입력하세요."
+        type="text"
+      />
       <div className="search-icon">
         <svg
           width="32"
@@ -41,7 +45,7 @@ const StyledSearchInput = styled.div`
 
     color: #000000;
 
-    border: 4px solid #248fe5;
+    border: 4px solid #356ee7;
     box-sizing: border-box;
     border-radius: 48px;
     ::placeholder {

@@ -1,45 +1,40 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import styled from "styled-components";
 import CenterCard from "./CenterCard";
 import "swiper/css";
 import "swiper/css/pagination";
 import SearchInput from "./SearchInput2";
-function groupBy(objectArray, property) {
-  return objectArray.reduce((acc, obj) => {
-    const key = obj[property]._text;
-    if (!acc[key]) {
-      acc[key] = [];
-    }
-    acc[key].push(obj);
-    return acc;
-  }, {});
-}
 
 const CenterList = ({ data }) => {
-  const [categories, setCategories] = useState([]);
   const [search, setSearch] = useState("");
   const [searched, setSearched] = useState("");
   const onClick = useCallback(() => {
     setSearched(search);
   }, [search]);
-  useEffect(() => {
-    const grouped = groupBy(data, "SIGUN_NM");
-    const arr = [];
-    for (const [key, value] of Object.entries(grouped)) {
-      arr.push(`${key} ${value.length}개`);
-    }
-    setCategories(arr);
-  }, [data]);
+  const onKeyPress = useCallback(
+    (e) => {
+      if (e.key === "Enter") {
+        setSearched(search);
+      }
+    },
+    [search]
+  );
 
   return (
     <StyledCenterList>
       <div className="search-input">
-        <SearchInput search={search} setSearch={setSearch} onClick={onClick} />
+        <SearchInput
+          search={search}
+          setSearch={setSearch}
+          onClick={onClick}
+          onKeyPress={onKeyPress}
+          focus={true}
+        />
       </div>
       <ul className="center-list">
         {searched !== ""
           ? data
-              .filter((v) => v.SIGUN_NM._text === searched)
+              .filter((v) => v.SIGUN_NM._text.includes(searched))
               .map((v) => {
                 console.log(v);
                 return (

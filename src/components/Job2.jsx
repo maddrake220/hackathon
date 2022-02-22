@@ -2,18 +2,23 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import CardButton from "./CardButton";
+import MainSvg from "./MainSvg";
 import SearchInput from "./SearchInput";
-// import MainSvg from "./MainSvg";
-// import SearchInput from "./SearchInput";
 const Job = ({ loading, error, data }) => {
   const navigate = useNavigate();
   const onClick = useCallback(() => {
-    navigate("/list");
+    navigate("/favorites");
   }, [navigate]);
   return (
     <StyledJob>
       <div className="job-wrap">
-        <div className="search-input" onClick={onClick}>
+        <MainSvg />
+        <div className="title-text">
+          <div>빠르고 간편하게</div>
+          <div>어르신 지역 일자리에 지원해보세요</div>
+        </div>
+        <div style={{ marginTop: "10px" }}></div>
+        <div className="search-input">
           <SearchInput />
         </div>
         <div className="cards">
@@ -22,6 +27,7 @@ const Job = ({ loading, error, data }) => {
             text={"나의 행복일자리 신청내역"}
           />
           <CardButton
+            onClick={onClick}
             backgroundColor={"#FE9428"}
             text={"내가 관심있어 한 일자리"}
           />
@@ -49,10 +55,7 @@ const StyledJob = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  .search-input {
-    position: absolute;
-    top: -115px;
-  }
+
   .job-wrap {
     position: relative;
   }
@@ -77,5 +80,10 @@ const StyledJob = styled.div`
     div {
       margin: 7px;
     }
+  }
+  .search-input {
+    position: absolute;
+    top: 119px;
+    left: 10px;
   }
 `;

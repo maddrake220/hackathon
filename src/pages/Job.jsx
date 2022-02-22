@@ -1,7 +1,7 @@
-import JobContainer from "../containers/JobContainer";
+import JJ from "../components/Job";
 
 const Job = () => {
-  return <JobContainer />;
+  return <JJ />;
 };
 
 export default Job;

@@ -7,12 +7,14 @@ import { ThemeDispatch } from "../context/context";
 import { reducer } from "../reducer/reducer";
 import Favorites from "./Favorites";
 import Job from "./Job";
+import JobList from "../components/JobList";
 import Center from "./Center";
 import Detail from "../components/Detail";
 import CenterList from "./CenterList";
 import CenterSvg from "../components/CenterSvg";
-import MainSvg from "../components/MainSvg";
 import NotFound from "./NotFound";
+import JobResult from "./JobResult";
+import MainSvg from "../components/MainSvg";
 const initialState = {
   fontSize: "16px",
 };
@@ -58,6 +60,8 @@ const Home = () => {
         <main>
           {pathname === "/" ? (
             <Job />
+          ) : pathname === "/list" ? (
+            <JobList />
           ) : pathname === "/center" ? (
             <Center />
           ) : pathname === "/favorites" ? (
@@ -68,6 +72,8 @@ const Home = () => {
             <CenterList />
           ) : pathname === "/center/favorites" ? (
             <Favorites />
+          ) : pathname === "/jobResult" ? (
+            <JobResult />
           ) : (
             <NotFound />
           )}

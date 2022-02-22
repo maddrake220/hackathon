@@ -5,6 +5,7 @@ const MyUser = {
   id: 1234,
   username: "maddrake",
   favorites: [],
+  jobfavorites: [],
 };
 const initialState = {
   loading: false,
@@ -15,7 +16,9 @@ const initialState = {
 
 export const VALIDATION_CHECK = "VALIDATION_CHECK";
 export const SET_USER_FAVORITE = "SET_USER_FAVORITE";
+export const SET_USER_JOB_FAVORITE = "SET_USER_JOB_FAVORITE";
 export const UNSET_USER_FAVORITE = "UNSET_USER_FAVORITE";
+export const UNSET_USER_JOB_FAVORITE = "UNSET_USER_JOB_FAVORITE";
 
 export const validationCheck = (payload) => {
   return {
@@ -29,9 +32,22 @@ export const setUserFavorite = (payload) => {
     payload,
   };
 };
+export const setUserJobFavorite = (payload) => {
+  return {
+    type: SET_USER_JOB_FAVORITE,
+    payload,
+  };
+};
 export const unSetUserFavorite = (payload) => {
   return {
     type: UNSET_USER_FAVORITE,
+    payload,
+  };
+};
+
+export const unSetUserJobFavorite = (payload) => {
+  return {
+    type: UNSET_USER_JOB_FAVORITE,
     payload,
   };
 };
@@ -55,6 +71,17 @@ const reducer = (state = initialState, action) => {
         },
       };
     }
+    case SET_USER_JOB_FAVORITE: {
+      const newFavorites = [...state.user.jobfavorites, action.payload];
+      return {
+        ...state,
+        user: {
+          id: 1234,
+          username: "maddrake",
+          jobfavorites: newFavorites,
+        },
+      };
+    }
     case UNSET_USER_FAVORITE: {
       const newFavirites = state.user.favorites.filter(
         (o) => o.id !== action.payload.id
@@ -65,6 +92,19 @@ const reducer = (state = initialState, action) => {
           id: 1234,
           username: "maddrake",
           favorites: newFavirites,
+        },
+      };
+    }
+    case UNSET_USER_JOB_FAVORITE: {
+      const newFavirites = state.user.jobfavorites.filter(
+        (o) => o.id !== action.payload.id
+      );
+      return {
+        ...state,
+        user: {
+          id: 1234,
+          username: "maddrake",
+          jobfavorites: newFavirites,
         },
       };
     }

@@ -7,12 +7,14 @@ import Center from "./pages/Center";
 import Favorites from "./pages/Favorites";
 import Detail from "./components/Detail";
 import CenterList from "./pages/CenterList";
+import JobList from "./pages/JobList";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}>
           <Route path="/" element={<Job />} />
+          <Route path="/list" element={<JobList />} />
           <Route path="/center" element={<Center />}>
             <Route path="/center/list" element={<CenterList />} />
             <Route path="/center/favorites" element={<Favorites />} />
