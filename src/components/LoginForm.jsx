@@ -128,7 +128,7 @@ const ButtonBox = styled.div`
 `;
 
 export const LoginForm = () => {
-  const [input, handleInputChange] = useInputChange();
+  const [handleInputChange] = useInputChange();
   let Navigate = useNavigate();
   function onSubmit(e) {
     e.preventDefault();

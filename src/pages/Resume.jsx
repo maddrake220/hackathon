@@ -1,5 +1,4 @@
 import { ResumeForm } from "../components/ResumeForm";
-import Navigation from "../components/Navigation";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { getJob } from "../utils/apis";
@@ -135,7 +134,6 @@ const Resume = () => {
 
   return (
     <Wrapper>
-      <Navigation />
       <Banner>
         <span>어르신행복일자리</span>
         <span>신청하기</span>
